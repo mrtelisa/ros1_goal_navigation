@@ -1,45 +1,24 @@
-# Assignment 2 ROS1
+# ROS 1 Goal Navigation: Jupyter Interface
 
-This repository contains the code for the ROS1-based part of the 2nd assignment of the Research Track 1 course.
+This branch replaces the terminal action client of the [ROS 1 Goal Navigation](../../tree/main) package with a **Jupyter notebook** that offers a graphical interface and live plots.
 
-## Description
+> Second assignment of the Research Track 2 course (1st year, 2nd semester), MSc Robotics Engineering, University of Genoa.
 
-The project implements a control system for a mobile robot in a simulated environment (Gazebo). It includes two main Python nodes:
+## Content
 
-- **Robot Control Node**: This node manages the robot's movement by receiving velocity commands and sending corresponding commands to the motors.
+The notebook `scripts/action_client_jy.ipynb` connects to the same `reaching_goal` action server as the original node, and adds:
 
-- **Monitoring Node**: This node monitors the robot's state by collecting information from sensors and publishing data about the robot's current status. Those informations are written in a topic, too.
+- **GUI** (`ipywidgets`): input fields for the target (x, y) and buttons to send a goal, cancel it and read the latest feedback.
+- **Live status:** goal status, robot position, and distance from the closest obstacle computed from the laser scan.
+- **Live plots** (`matplotlib` animation, updated every second): the robot trajectory, and a bar chart of the goals reached and failed.
 
-
-## Prerequisites
-
-- ROS Noetic
-
-- Catkin workspace
-
-- Clone this repository in the src folder of the workspace created
-
-- Clone another repository, always in the src folder:
-    ```bash
-    git clone https://github.com/CarmineD8/assignment_2_2024
-    ```
-- In the workspace, run the following command:
-    ```bash
-    catkin_make
-    ```
+The launch file starts only the simulation and the service node, because the action client now runs in the notebook.
 
 ## Usage
 
-1. **Launching the ROS Nodes**
-    
-    Launch the robot control and simulation:
-    ```bash
-    roslaunch ass2_ros1 ass2.launch
-    ```
-    
-2. **Interacting in the shell**
+```bash
+roslaunch ass2_ros1 ass2.launch
+jupyter notebook scripts/action_client_jy.ipynb
+```
 
-    - The user can chose the target point where the robot should be headed to.
-
-    - Also, while the robot is moving, the user can ask for a feedback (about position and velocity), or can quit or even exit the simulation.
-
+Then run all the cells of the notebook. See the [main README](../../tree/main#readme) for the installation.
