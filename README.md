@@ -1,45 +1,22 @@
-# Assignment 2 ROS1
+# ROS 1 Goal Navigation: Sphinx Documentation
 
-This repository contains the code for the ROS1-based part of the 2nd assignment of the Research Track 1 course.
+This branch adds the code documentation of the [ROS 1 Goal Navigation](../../tree/main) package, generated with **Sphinx**.
 
-## Description
+> First assignment of the Research Track 2 course (1st year, 2nd semester), MSc Robotics Engineering, University of Genoa.
 
-The project implements a control system for a mobile robot in a simulated environment (Gazebo). It includes two main Python nodes:
+## Content
 
-- **Robot Control Node**: This node manages the robot's movement by receiving velocity commands and sending corresponding commands to the motors.
+- **Docstrings** in reStructuredText format for every module and function of `action_client.py` and `service.py`: description, parameters, return values.
+- **Sphinx configuration** in `source/` (`conf.py`, `index.rst`, one page per node), with the Read the Docs theme.
+- **Generated HTML documentation** in `docs/`, ready to be published with GitHub Pages.
 
-- **Monitoring Node**: This node monitors the robot's state by collecting information from sensors and publishing data about the robot's current status. Those informations are written in a topic, too.
+The code and its behaviour are the same as in `main`: see the [main README](../../tree/main#readme) for the nodes, installation and usage.
 
+## Build the documentation
 
-## Prerequisites
+```bash
+pip install sphinx sphinx-rtd-theme
+make html     # output in build/html/
+```
 
-- ROS Noetic
-
-- Catkin workspace
-
-- Clone this repository in the src folder of the workspace created
-
-- Clone another repository, always in the src folder:
-    ```bash
-    git clone https://github.com/CarmineD8/assignment_2_2024
-    ```
-- In the workspace, run the following command:
-    ```bash
-    catkin_make
-    ```
-
-## Usage
-
-1. **Launching the ROS Nodes**
-    
-    Launch the robot control and simulation:
-    ```bash
-    roslaunch ass2_ros1 ass2.launch
-    ```
-    
-2. **Interacting in the shell**
-
-    - The user can chose the target point where the robot should be headed to.
-
-    - Also, while the robot is moving, the user can ask for a feedback (about position and velocity), or can quit or even exit the simulation.
-
+The already generated version is in `docs/`: open `docs/index.html` in a browser.
